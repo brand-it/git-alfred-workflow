@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.alfredapp.wm</string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>072F6006-1635-46BD-807F-346056295DAE</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>8EDF4FD8-A14E-4C53-827F-9F348E65D2CC</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>29D46285-EF00-4393-8B58-9F48BEBF4E44</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>C445B3A9-6FC5-4E9E-A269-216CD376A564</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>7C874062-7CA6-4A40-965C-077D4D999353</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>4C6C7ADA-73E4-40F4-910C-0AE70FB16E26</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>C941D053-A400-4700-B70D-044802A382D1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>BA2201D6-49E8-488C-BE25-A8BBD4D98DA4</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Open Cache Dir {var:cache_dir}</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>8AFADD51-BC09-4FB4-8CBA-D5DF6C156AF5</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>5B0B5FE4-5D25-4FD7-80F7-4761334EB72B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>8EDF4FD8-A14E-4C53-827F-9F348E65D2CC</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>27E0E514-7799-43FF-ADE7-9F7E69C32700</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>BA2201D6-49E8-488C-BE25-A8BBD4D98DA4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>8AFADD51-BC09-4FB4-8CBA-D5DF6C156AF5</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>C941D053-A400-4700-B70D-044802A382D1</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>29D46285-EF00-4393-8B58-9F48BEBF4E44</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Brandt Lareau</string>
+	<key>description</key>
+	<string>Nice Get commands that help me generate urls for my git repos</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>git</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>'{query}', {variables}</string>
+				<key>cleardebuggertext</key>
+				<false/>
+				<key>processoutputs</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.debug</string>
+			<key>uid</key>
+			<string>4C6C7ADA-73E4-40F4-910C-0AE70FB16E26</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>fixedorder</key>
+				<false/>
+				<key>items</key>
+				<string>[{"imagefile":"a50b67aadf42151203160bf645c559cc3a30e4d8.png","title":"git {var:directory_name} code","arg":"code","subtitle":"Open VS Code"},{"imagefile":"c1f688f0845e81473e8951fad2c73e2747bf09a7.png","title":"git {var:directory_name} github","arg":"github open","subtitle":"Open Github"},{"imagefile":"a939f40e35cc59c607f6efc73f10617745b40c6d.png","title":"git {var:directory_name} open","arg":"open","subtitle":"Open in Finder"}]</string>
+				<key>matchmode</key>
+				<integer>0</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string></string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.listfilter</string>
+			<key>uid</key>
+			<string>C941D053-A400-4700-B70D-044802A382D1</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>2</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>git</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>1</integer>
+				<key>queuemode</key>
+				<integer>2</integer>
+				<key>runningsubtext</key>
+				<string>Search for a repo that has a `.git` file on your computer</string>
+				<key>script</key>
+				<string>#!/bin/bash
+
+DIRECTORY=$HOME
+STARTS_WITH=$1
+LOCKFILE="${TMPDIR}cached_repos.lock"
+SHALLOW_MAX_DEPTH=3
+
+# Define the temporary file path using macOS's built-in temp file path and a fixed name
+CACHED_REPOS="${TMPDIR}cached_repos"
+
+# Function to check if a process with given PID is running
+is_process_running() {
+  local pid=$1
+  kill -0 "$pid" 2&gt;/dev/null
+  return $?
+}
+
+update_cache() {
+  if [ -e "$LOCKFILE" ]; then
+    # Read the PID from the lock file
+    stored_pid=$(cat "$LOCKFILE")
+    # if the stored PID does not match the current process ID, exit
+    if [ "$stored_pid" != "$$" ]; then
+      exit 0
+    fi
+  fi
+  # Create an empty array to store the repos
+  REPOS=()
+
+  # Loop through the directories and store the repo names in the array
+  while IFS= read -r -d $'\0' dir; do
+    repo=${dir%.git}
+    REPOS+=("$repo")
+  done &lt; &lt;(find "$DIRECTORY" \( -name '.*' -not -name '.git' -prune \) -o -type d -name '*.git' -print0 2&gt;/dev/null)
+
+  # Write the repo names to the temporary file
+  printf '%s\n' "${REPOS[@]}" &gt; "$CACHED_REPOS"
+  rm -f "$LOCKFILE"
+}
+
+# Check if the cache is being updated by another process
+# If it is, return 1 to indicate that cache is being updated
+# If it is not, return 0 to indicate that cache is not being updated
+cache_updating() {
+  if [ -e "$LOCKFILE" ]; then
+    # Read the PID from the lock file
+    stored_pid=$(cat "$LOCKFILE")
+
+    # Check if the process is running
+    if is_process_running "$stored_pid"; then
+      return 0
+    else
+      return 1
+    fi
+  fi
+  return 0
+}
+if [ -e "$LOCKFILE" ]; then
+  lock_pid=$(cat "$LOCKFILE")
+else
+  lock_pid=""
+fi
+
+# Check if the temporary file doesn't exist or is older than 24 hours or there is already a process running
+if ([ ! -e "$CACHED_REPOS" ] || [ "$(find "$CACHED_REPOS" -mtime +1)" ]); then
+  # Call update_cache in a background process and store its PID in the lock file
+  update_cache &amp;
+  # Capture the PID of the last background process
+  forked_pid=$!
+  # Write the forked PID to the lock file
+  echo "$forked_pid" &gt; "$LOCKFILE"
+fi
+
+# Read the repo names from the temporary file if it exists
+REPOS=()
+if [ -e "$CACHED_REPOS" ]; then
+  while IFS= read -r repo; do
+    REPOS+=("$repo")
+  done &lt; "$CACHED_REPOS"
+else
+  while IFS= read -r -d $'\0' dir; do
+    repo=${dir%.git}
+    REPOS+=("$repo")
+  done &lt; &lt;(find "$DIRECTORY" \( -name '.*' -not -name '.git' -prune \) -maxdepth $SHALLOW_MAX_DEPTH -o -type d -name '*.git' -print0 2&gt;/dev/null)
+fi
+
+# Format the array as a JSON object using the provided schema
+JSON="{\"items\": ["
+if [ ${#REPOS[@]} -gt 0 ]; then
+    for repo_path in "${REPOS[@]}"; do
+        directory_name=$(basename "$repo_path")
+        autocomplete="$directory_name"
+        JSON+="{\"arg\": \"$directory_name\", \"uid\": \"$directory_name\", \"subtitle\": \"$repo_path\", \"title\": \"$directory_name\", \"autocomplete\": \"$autocomplete\", \"variables\": {\"repo_path\": \"$repo_path\", \"directory_name\": \"$directory_name\", \"lock_pid\": \"$lock_pid\", \"cache_dir\": \"$CACHED_REPOS\"}}, "
+    done
+    JSON="${JSON%??}"
+fi
+JSON+="]}"
+echo "${JSON}"
+</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>git</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>7C874062-7CA6-4A40-965C-077D4D999353</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>eval $1</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>C445B3A9-6FC5-4E9E-A269-216CD376A564</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{query} {var:repo_path}</string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>29D46285-EF00-4393-8B58-9F48BEBF4E44</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{var:cache_dir}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>8AFADD51-BC09-4FB4-8CBA-D5DF6C156AF5</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{var:cache_dir}</string>
+				<key>title</key>
+				<string>Copied to Clipboard</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>5B0B5FE4-5D25-4FD7-80F7-4761334EB72B</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>path</key>
+				<string>{var:cache_dir}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.revealfile</string>
+			<key>uid</key>
+			<string>BA2201D6-49E8-488C-BE25-A8BBD4D98DA4</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>git clear</string>
+				<key>subtext</key>
+				<string>Reset the git cache to grab new git repos</string>
+				<key>text</key>
+				<string>git clear</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>072F6006-1635-46BD-807F-346056295DAE</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>#!/bin/bash
+
+DIRECTORY=$HOME
+
+# Define the temporary file path using macOS's built-in temp file path and a fixed name
+CACHED_REPOS="${TMPDIR}cached_repos"
+
+# Reset cache
+rm -f "$CACHED_REPOS"
+
+echo "{ \"items\": [ { \"title\": \"Cleared cache...\", \"subtitle\": \"Cleared Cache...\", \"valid\": false } ] }"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>8EDF4FD8-A14E-4C53-827F-9F348E65D2CC</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string></string>
+				<key>title</key>
+				<string>Git Cache Cleared</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>27E0E514-7799-43FF-ADE7-9F7E69C32700</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Keywords are one of Alfred's most commonly used and most useful ways of launching actions. Set a keyword and connect it to the action(s) you want to perform.
+
+Type your keyword into Alfred, followed by your input text if needed, and you'll be on your way to boosting your productivity!</string>
+	<key>uidata</key>
+	<dict>
+		<key>072F6006-1635-46BD-807F-346056295DAE</key>
+		<dict>
+			<key>xpos</key>
+			<real>35</real>
+			<key>ypos</key>
+			<real>410</real>
+		</dict>
+		<key>27E0E514-7799-43FF-ADE7-9F7E69C32700</key>
+		<dict>
+			<key>xpos</key>
+			<real>390</real>
+			<key>ypos</key>
+			<real>410</real>
+		</dict>
+		<key>29D46285-EF00-4393-8B58-9F48BEBF4E44</key>
+		<dict>
+			<key>note</key>
+			<string>create command as query</string>
+			<key>xpos</key>
+			<real>505</real>
+			<key>ypos</key>
+			<real>170</real>
+		</dict>
+		<key>4C6C7ADA-73E4-40F4-910C-0AE70FB16E26</key>
+		<dict>
+			<key>xpos</key>
+			<real>350</real>
+			<key>ypos</key>
+			<real>75</real>
+		</dict>
+		<key>5B0B5FE4-5D25-4FD7-80F7-4761334EB72B</key>
+		<dict>
+			<key>xpos</key>
+			<real>705</real>
+			<key>ypos</key>
+			<real>275</real>
+		</dict>
+		<key>7C874062-7CA6-4A40-965C-077D4D999353</key>
+		<dict>
+			<key>xpos</key>
+			<real>30</real>
+			<key>ypos</key>
+			<real>140</real>
+		</dict>
+		<key>8AFADD51-BC09-4FB4-8CBA-D5DF6C156AF5</key>
+		<dict>
+			<key>xpos</key>
+			<real>495</real>
+			<key>ypos</key>
+			<real>275</real>
+		</dict>
+		<key>8EDF4FD8-A14E-4C53-827F-9F348E65D2CC</key>
+		<dict>
+			<key>xpos</key>
+			<real>220</real>
+			<key>ypos</key>
+			<real>410</real>
+		</dict>
+		<key>BA2201D6-49E8-488C-BE25-A8BBD4D98DA4</key>
+		<dict>
+			<key>xpos</key>
+			<real>310</real>
+			<key>ypos</key>
+			<real>275</real>
+		</dict>
+		<key>C445B3A9-6FC5-4E9E-A269-216CD376A564</key>
+		<dict>
+			<key>xpos</key>
+			<real>610</real>
+			<key>ypos</key>
+			<real>140</real>
+		</dict>
+		<key>C941D053-A400-4700-B70D-044802A382D1</key>
+		<dict>
+			<key>xpos</key>
+			<real>310</real>
+			<key>ypos</key>
+			<real>140</real>
+		</dict>
+	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
+	<key>version</key>
+	<string>1.0</string>
+	<key>webaddress</key>
+	<string>https://www.alfredapp.com</string>
+</dict>
+</plist>
