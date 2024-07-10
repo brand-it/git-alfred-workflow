@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>com.alfredapp.wm</string>
+	<string>com.alfredapp.brandit-git</string>
 	<key>category</key>
 	<string>Productivity</string>
 	<key>connections</key>
@@ -146,6 +146,29 @@
 			<string>4C6C7ADA-73E4-40F4-910C-0AE70FB16E26</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>eval $1</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>C445B3A9-6FC5-4E9E-A269-216CD376A564</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -326,29 +349,6 @@ echo "${JSON}"
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>eval $1</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>C445B3A9-6FC5-4E9E-A269-216CD376A564</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>argument</key>
 				<string>{query} {var:repo_path}</string>
 				<key>passthroughargument</key>
@@ -360,6 +360,19 @@ echo "${JSON}"
 			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
 			<string>29D46285-EF00-4393-8B58-9F48BEBF4E44</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>path</key>
+				<string>{var:cache_dir}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.revealfile</string>
+			<key>uid</key>
+			<string>BA2201D6-49E8-488C-BE25-A8BBD4D98DA4</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -400,40 +413,6 @@ echo "${JSON}"
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>5B0B5FE4-5D25-4FD7-80F7-4761334EB72B</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>path</key>
-				<string>{var:cache_dir}</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.revealfile</string>
-			<key>uid</key>
-			<string>BA2201D6-49E8-488C-BE25-A8BBD4D98DA4</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>git clear</string>
-				<key>subtext</key>
-				<string>Reset the git cache to grab new git repos</string>
-				<key>text</key>
-				<string>git clear</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>072F6006-1635-46BD-807F-346056295DAE</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -491,11 +470,30 @@ echo "{ \"items\": [ { \"title\": \"Cleared cache...\", \"subtitle\": \"Cleared 
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>git clear</string>
+				<key>subtext</key>
+				<string>Reset the git cache to grab new git repos</string>
+				<key>text</key>
+				<string>git clear</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>072F6006-1635-46BD-807F-346056295DAE</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
-	<string>Keywords are one of Alfred's most commonly used and most useful ways of launching actions. Set a keyword and connect it to the action(s) you want to perform.
-
-Type your keyword into Alfred, followed by your input text if needed, and you'll be on your way to boosting your productivity!</string>
+	<string></string>
 	<key>uidata</key>
 	<dict>
 		<key>072F6006-1635-46BD-807F-346056295DAE</key>
@@ -580,9 +578,11 @@ Type your keyword into Alfred, followed by your input text if needed, and you'll
 	</dict>
 	<key>userconfigurationconfig</key>
 	<array/>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
-	<string>1.0</string>
+	<string>2.0</string>
 	<key>webaddress</key>
-	<string>https://www.alfredapp.com</string>
+	<string>https://github.com/brand-it/git-alfred-workflow</string>
 </dict>
 </plist>
