@@ -25,6 +25,41 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
+				<string>4C6C7ADA-73E4-40F4-910C-0AE70FB16E26</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>6FDF3F88-5885-4572-88D6-4B1604C1C244</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>6FDF3F88-5885-4572-88D6-4B1604C1C244</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>A68CE09D-41BE-457F-BDAB-0F0767AC9D0D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>40599530-CD23-4F3A-920A-6EF2BED4D028</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
 				<string>C445B3A9-6FC5-4E9E-A269-216CD376A564</string>
 				<key>modifiers</key>
 				<integer>0</integer>
@@ -133,6 +168,21 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>cd '{var:repo_path}'</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.terminalcommand</string>
+			<key>uid</key>
+			<string>A68CE09D-41BE-457F-BDAB-0F0767AC9D0D</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argument</key>
 				<string>'{query}', {variables}</string>
 				<key>cleardebuggertext</key>
@@ -150,29 +200,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>eval $1</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>C445B3A9-6FC5-4E9E-A269-216CD376A564</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -180,7 +207,7 @@
 				<key>fixedorder</key>
 				<false/>
 				<key>items</key>
-				<string>[{"imagefile":"a50b67aadf42151203160bf645c559cc3a30e4d8.png","title":"git {var:directory_name} code","arg":"code","subtitle":"Open VS Code"},{"imagefile":"c1f688f0845e81473e8951fad2c73e2747bf09a7.png","title":"git {var:directory_name} github","arg":"github open","subtitle":"Open Github"},{"imagefile":"a939f40e35cc59c607f6efc73f10617745b40c6d.png","title":"git {var:directory_name} open","arg":"open","subtitle":"Open in Finder"}]</string>
+				<string>[{"imagefile":"a50b67aadf42151203160bf645c559cc3a30e4d8.png","title":"git {var:directory_name} code","arg":"code","subtitle":"Open VS Code"},{"imagefile":"c1f688f0845e81473e8951fad2c73e2747bf09a7.png","title":"git {var:directory_name} github","arg":"github open","subtitle":"Open Github"},{"imagefile":"a939f40e35cc59c607f6efc73f10617745b40c6d.png","title":"git {var:directory_name} open","arg":"open","subtitle":"Open in Finder"},{"imagefile":"60fde7ceda90073d7944e3ab1cfa9864da683af6.png","title":"git {var:directory_name} iterm","arg":"iterm","subtitle":"Open in iTerm"}]</string>
 				<key>matchmode</key>
 				<integer>0</integer>
 				<key>runningsubtext</key>
@@ -349,30 +376,75 @@ echo "${JSON}"
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argument</key>
-				<string>{query} {var:repo_path}</string>
-				<key>passthroughargument</key>
+				<key>concurrently</key>
 				<false/>
-				<key>variables</key>
-				<dict/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>eval $1</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
+			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>29D46285-EF00-4393-8B58-9F48BEBF4E44</string>
+			<string>C445B3A9-6FC5-4E9E-A269-216CD376A564</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string>{var:app_name}</string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>iterm</string>
+						<key>outputlabel</key>
+						<string>iterm</string>
+						<key>uid</key>
+						<string>40599530-CD23-4F3A-920A-6EF2BED4D028</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>else</string>
+				<key>hideelse</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>6FDF3F88-5885-4572-88D6-4B1604C1C244</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>path</key>
-				<string>{var:cache_dir}</string>
+				<key>argument</key>
+				<string>{query} {var:repo_path}</string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict>
+					<key>app_name</key>
+					<string>{query}</string>
+				</dict>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.revealfile</string>
+			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
-			<string>BA2201D6-49E8-488C-BE25-A8BBD4D98DA4</string>
+			<string>29D46285-EF00-4393-8B58-9F48BEBF4E44</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -413,6 +485,40 @@ echo "${JSON}"
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>5B0B5FE4-5D25-4FD7-80F7-4761334EB72B</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>path</key>
+				<string>{var:cache_dir}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.revealfile</string>
+			<key>uid</key>
+			<string>BA2201D6-49E8-488C-BE25-A8BBD4D98DA4</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>git clear</string>
+				<key>subtext</key>
+				<string>Reset the git cache to grab new git repos</string>
+				<key>text</key>
+				<string>git clear</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>072F6006-1635-46BD-807F-346056295DAE</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -470,27 +576,6 @@ echo "{ \"items\": [ { \"title\": \"Cleared cache...\", \"subtitle\": \"Cleared 
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>git clear</string>
-				<key>subtext</key>
-				<string>Reset the git cache to grab new git repos</string>
-				<key>text</key>
-				<string>git clear</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>072F6006-1635-46BD-807F-346056295DAE</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -499,16 +584,16 @@ echo "{ \"items\": [ { \"title\": \"Cleared cache...\", \"subtitle\": \"Cleared 
 		<key>072F6006-1635-46BD-807F-346056295DAE</key>
 		<dict>
 			<key>xpos</key>
-			<real>35</real>
+			<real>30</real>
 			<key>ypos</key>
-			<real>410</real>
+			<real>560</real>
 		</dict>
 		<key>27E0E514-7799-43FF-ADE7-9F7E69C32700</key>
 		<dict>
 			<key>xpos</key>
-			<real>390</real>
+			<real>385</real>
 			<key>ypos</key>
-			<real>410</real>
+			<real>560</real>
 		</dict>
 		<key>29D46285-EF00-4393-8B58-9F48BEBF4E44</key>
 		<dict>
@@ -522,9 +607,9 @@ echo "{ \"items\": [ { \"title\": \"Cleared cache...\", \"subtitle\": \"Cleared 
 		<key>4C6C7ADA-73E4-40F4-910C-0AE70FB16E26</key>
 		<dict>
 			<key>xpos</key>
-			<real>350</real>
+			<real>580</real>
 			<key>ypos</key>
-			<real>75</real>
+			<real>35</real>
 		</dict>
 		<key>5B0B5FE4-5D25-4FD7-80F7-4761334EB72B</key>
 		<dict>
@@ -532,6 +617,13 @@ echo "{ \"items\": [ { \"title\": \"Cleared cache...\", \"subtitle\": \"Cleared 
 			<real>705</real>
 			<key>ypos</key>
 			<real>275</real>
+		</dict>
+		<key>6FDF3F88-5885-4572-88D6-4B1604C1C244</key>
+		<dict>
+			<key>xpos</key>
+			<real>600</real>
+			<key>ypos</key>
+			<real>160</real>
 		</dict>
 		<key>7C874062-7CA6-4A40-965C-077D4D999353</key>
 		<dict>
@@ -550,9 +642,16 @@ echo "{ \"items\": [ { \"title\": \"Cleared cache...\", \"subtitle\": \"Cleared 
 		<key>8EDF4FD8-A14E-4C53-827F-9F348E65D2CC</key>
 		<dict>
 			<key>xpos</key>
-			<real>220</real>
+			<real>215</real>
 			<key>ypos</key>
-			<real>410</real>
+			<real>560</real>
+		</dict>
+		<key>A68CE09D-41BE-457F-BDAB-0F0767AC9D0D</key>
+		<dict>
+			<key>xpos</key>
+			<real>705</real>
+			<key>ypos</key>
+			<real>25</real>
 		</dict>
 		<key>BA2201D6-49E8-488C-BE25-A8BBD4D98DA4</key>
 		<dict>
@@ -564,9 +663,9 @@ echo "{ \"items\": [ { \"title\": \"Cleared cache...\", \"subtitle\": \"Cleared 
 		<key>C445B3A9-6FC5-4E9E-A269-216CD376A564</key>
 		<dict>
 			<key>xpos</key>
-			<real>610</real>
+			<real>705</real>
 			<key>ypos</key>
-			<real>140</real>
+			<real>155</real>
 		</dict>
 		<key>C941D053-A400-4700-B70D-044802A382D1</key>
 		<dict>
@@ -581,7 +680,7 @@ echo "{ \"items\": [ { \"title\": \"Cleared cache...\", \"subtitle\": \"Cleared 
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2.0</string>
+	<string>2.1.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/brand-it/git-alfred-workflow</string>
 </dict>
