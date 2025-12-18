@@ -374,105 +374,225 @@ end alfred_script</string>
 				<key>runningsubtext</key>
 				<string>Search for a repo that has a `.git` file on your computer</string>
 				<key>script</key>
-				<string>#!/bin/bash
+				<string>#!/usr/bin/swift
 
-DIRECTORY=$HOME
-STARTS_WITH=$1
-LOCKFILE="${TMPDIR}cached_repos.lock"
-SHALLOW_MAX_DEPTH=${scan_depth:-3}
+import Foundation
 
-# Define the temporary file path using macOS's built-in temp file path and a fixed name
-CACHED_REPOS="${TMPDIR}cached_repos"
+// MARK: - Configuration
+let homeDirectory = FileManager.default.homeDirectoryForCurrentUser.path
+let startsWith = CommandLine.arguments.count &gt; 1 ? CommandLine.arguments[1] : ""
+let tmpDir = NSTemporaryDirectory()
+let lockFile = tmpDir + "cached_repos.lock"
+let cachedReposFile = tmpDir + "cached_repos"
+let shallowMaxDepth = ProcessInfo.processInfo.environment["scan_depth"].flatMap { Int($0) } ?? 3
 
-# Function to check if a process with given PID is running
-is_process_running() {
-  local pid=$1
-  kill -0 "$pid" 2&gt;/dev/null
-  return $?
+// MARK: - Helper Functions
+
+func isProcessRunning(_ pid: Int32) -&gt; Bool {
+    return kill(pid, 0) == 0
 }
 
-update_cache() {
-  if [ -e "$LOCKFILE" ]; then
-    # Read the PID from the lock file
-    stored_pid=$(cat "$LOCKFILE")
-    # if the stored PID does not match the current process ID, exit
-    if [ "$stored_pid" != "$$" ]; then
-      exit 0
-    fi
-  fi
-  # Create an empty array to store the repos
-  REPOS=()
-
-  # Loop through the directories and store the repo names in the array
-  while IFS= read -r -d $'\0' dir; do
-    repo=${dir%.git}
-    REPOS+=("$repo")
-  done &lt; &lt;(find "$DIRECTORY" \( -name '.*' -not -name '.git' -prune \) -o -type d -name '*.git' -print0 2&gt;/dev/null)
-
-  # Write the repo names to the temporary file
-  printf '%s\n' "${REPOS[@]}" &gt; "$CACHED_REPOS"
-  rm -f "$LOCKFILE"
+func findGitRepos(in directory: String) -&gt; [String] {
+    var repos: [String] = []
+    let fileManager = FileManager.default
+    
+    guard let enumerator = fileManager.enumerator(
+        at: URL(fileURLWithPath: directory),
+        includingPropertiesForKeys: [.isDirectoryKey, .nameKey],
+        options: [.skipsHiddenFiles]
+    ) else {
+        return repos
+    }
+    
+    for case let fileURL as URL in enumerator {
+        guard let resourceValues = try? fileURL.resourceValues(forKeys: [.isDirectoryKey, .nameKey]),
+              let isDirectory = resourceValues.isDirectory,
+              let name = resourceValues.name else {
+            continue
+        }
+        
+        if isDirectory &amp;&amp; name == ".git" {
+            let repoPath = fileURL.deletingLastPathComponent().path
+            repos.append(repoPath)
+            enumerator.skipDescendants()
+        }
+    }
+    
+    return repos
 }
 
-# Check if the cache is being updated by another process
-# If it is, return 1 to indicate that cache is being updated
-# If it is not, return 0 to indicate that cache is not being updated
-cache_updating() {
-  if [ -e "$LOCKFILE" ]; then
-    # Read the PID from the lock file
-    stored_pid=$(cat "$LOCKFILE")
-
-    # Check if the process is running
-    if is_process_running "$stored_pid"; then
-      return 0
-    else
-      return 1
-    fi
-  fi
-  return 0
+func updateCache() {
+    let fileManager = FileManager.default
+    
+    // Check if lock file exists and belongs to this process
+    if fileManager.fileExists(atPath: lockFile) {
+        if let storedPid = try? String(contentsOfFile: lockFile, encoding: .utf8).trimmingCharacters(in: .whitespacesAndNewlines),
+           let pid = Int32(storedPid),
+           pid != getpid() {
+            exit(0)
+        }
+    }
+    
+    // Find all repos
+    let repos = findGitRepos(in: homeDirectory)
+    
+    // Write to cache file
+    let reposString = repos.joined(separator: "\n")
+    try? reposString.write(toFile: cachedReposFile, atomically: true, encoding: .utf8)
+    
+    // Remove lock file
+    try? fileManager.removeItem(atPath: lockFile)
 }
-if [ -e "$LOCKFILE" ]; then
-  lock_pid=$(cat "$LOCKFILE")
-else
-  lock_pid=""
-fi
 
-# Check if the temporary file doesn't exist or is older than 24 hours or there is already a process running
-if ([ ! -e "$CACHED_REPOS" ] || [ "$(find "$CACHED_REPOS" -mtime +1)" ]); then
-  # Call update_cache in a background process and store its PID in the lock file
-  update_cache &amp;
-  # Capture the PID of the last background process
-  forked_pid=$!
-  # Write the forked PID to the lock file
-  echo "$forked_pid" &gt; "$LOCKFILE"
-fi
+func cacheUpdating() -&gt; Bool {
+    let fileManager = FileManager.default
+    
+    guard fileManager.fileExists(atPath: lockFile) else {
+        return false
+    }
+    
+    if let storedPid = try? String(contentsOfFile: lockFile, encoding: .utf8).trimmingCharacters(in: .whitespacesAndNewlines),
+       let pid = Int32(storedPid) {
+        return isProcessRunning(pid)
+    }
+    
+    return false
+}
 
-# Read the repo names from the temporary file if it exists
-REPOS=()
-if [ -e "$CACHED_REPOS" ]; then
-  while IFS= read -r repo; do
-    REPOS+=("$repo")
-  done &lt; "$CACHED_REPOS"
-else
-  while IFS= read -r -d $'\0' dir; do
-    repo=${dir%.git}
-    REPOS+=("$repo")
-  done &lt; &lt;(find "$DIRECTORY" \( -name '.*' -not -name '.git' -prune \) -maxdepth $SHALLOW_MAX_DEPTH -o -type d -name '*.git' -print0 2&gt;/dev/null)
-fi
+func getCachedRepos() -&gt; [String] {
+    guard let content = try? String(contentsOfFile: cachedReposFile, encoding: .utf8) else {
+        return []
+    }
+    return content.components(separatedBy: .newlines).filter { !$0.isEmpty }
+}
 
-# Format the array as a JSON object using the provided schema
-JSON="{\"items\": ["
-if [ ${#REPOS[@]} -gt 0 ]; then
-    for repo_path in "${REPOS[@]}"; do
-        directory_name=$(basename "$repo_path")
-        autocomplete="$directory_name"
-        JSON+="{\"arg\": \"$directory_name\", \"uid\": \"$directory_name\", \"subtitle\": \"$repo_path\", \"title\": \"$directory_name\", \"autocomplete\": \"$autocomplete\", \"variables\": {\"repo_path\": \"$repo_path\", \"directory_name\": \"$directory_name\", \"lock_pid\": \"$lock_pid\", \"cache_dir\": \"$CACHED_REPOS\"}}, "
-    done
-    JSON="${JSON%??}"
-fi
-JSON+="]}"
-echo "${JSON}"
-</string>
+func findGitReposShallow(in directory: String, maxDepth: Int) -&gt; [String] {
+    var repos: [String] = []
+    let fileManager = FileManager.default
+    
+    func search(at path: String, depth: Int) {
+        guard depth &lt;= maxDepth else { return }
+        
+        guard let contents = try? fileManager.contentsOfDirectory(atPath: path) else {
+            return
+        }
+        
+        for item in contents {
+            let itemPath = (path as NSString).appendingPathComponent(item)
+            var isDir: ObjCBool = false
+            
+            guard fileManager.fileExists(atPath: itemPath, isDirectory: &amp;isDir) else {
+                continue
+            }
+            
+            if isDir.boolValue {
+                if item == ".git" {
+                    repos.append(path)
+                } else if !item.hasPrefix(".") {
+                    search(at: itemPath, depth: depth + 1)
+                }
+            }
+        }
+    }
+    
+    search(at: directory, depth: 1)
+    return repos
+}
+
+// MARK: - Main Logic
+
+let fileManager = FileManager.default
+var lockPid = ""
+
+if fileManager.fileExists(atPath: lockFile) {
+    lockPid = (try? String(contentsOfFile: lockFile, encoding: .utf8).trimmingCharacters(in: .whitespacesAndNewlines)) ?? ""
+}
+
+// Check if cache needs updating
+let cacheExists = fileManager.fileExists(atPath: cachedReposFile)
+var cacheOld = false
+
+if cacheExists {
+    if let attributes = try? fileManager.attributesOfItem(atPath: cachedReposFile),
+       let modificationDate = attributes[.modificationDate] as? Date {
+        let dayInSeconds: TimeInterval = 24 * 60 * 60
+        cacheOld = Date().timeIntervalSince(modificationDate) &gt; dayInSeconds
+    }
+}
+
+// Update cache if needed
+if !cacheExists || cacheOld {
+    let pid = getpid()
+    try? "\(pid)".write(toFile: lockFile, atomically: true, encoding: .utf8)
+    
+    // Fork process for cache update
+    DispatchQueue.global(qos: .background).async {
+        updateCache()
+    }
+}
+
+// Get repos
+var repos: [String] = []
+
+if cacheExists {
+    repos = getCachedRepos()
+} else {
+    repos = findGitReposShallow(in: homeDirectory, maxDepth: shallowMaxDepth)
+}
+
+// Filter by startsWith if provided
+if !startsWith.isEmpty {
+    repos = repos.filter { 
+        ($0 as NSString).lastPathComponent.lowercased().hasPrefix(startsWith.lowercased())
+    }
+}
+
+// MARK: - JSON Output
+
+struct AlfredItem: Codable {
+    let arg: String
+    let uid: String
+    let subtitle: String
+    let title: String
+    let autocomplete: String
+    let variables: [String: String]
+}
+
+struct AlfredOutput: Codable {
+    let items: [AlfredItem]
+}
+
+var items: [AlfredItem] = []
+
+for repoPath in repos {
+    let directoryName = (repoPath as NSString).lastPathComponent
+    let item = AlfredItem(
+        arg: directoryName,
+        uid: directoryName,
+        subtitle: repoPath,
+        title: directoryName,
+        autocomplete: directoryName,
+        variables: [
+            "repo_path": repoPath,
+            "directory_name": directoryName,
+            "lock_pid": lockPid,
+            "cache_dir": cachedReposFile
+        ]
+    )
+    items.append(item)
+}
+
+let output = AlfredOutput(items: items)
+
+let encoder = JSONEncoder()
+encoder.outputFormatting = .prettyPrinted
+
+if let jsonData = try? encoder.encode(output),
+   let jsonString = String(data: jsonData, encoding: .utf8) {
+    print(jsonString)
+} else {
+    print("{\"items\": []}")
+}</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -482,7 +602,7 @@ echo "${JSON}"
 				<key>title</key>
 				<string>git</string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>10</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -981,7 +1101,7 @@ A tool to help switch and open up VSCode quickly without using finder or termina
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2.6.0</string>
+	<string>3.0.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/brand-it/git-alfred-workflow</string>
 </dict>
