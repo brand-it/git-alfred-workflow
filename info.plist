@@ -44,6 +44,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>2BE9A445-168C-4AA1-B1F7-864A73EF2E0F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>BF074567-0912-4C9B-AAFA-B597A03715A4</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>6FDF3F88-5885-4572-88D6-4B1604C1C244</key>
 		<array>
 			<dict>
@@ -79,6 +92,18 @@
 				<string></string>
 				<key>sourceoutputuid</key>
 				<string>105A9434-559C-4502-BCA2-966DEFE43123</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>2BE9A445-168C-4AA1-B1F7-864A73EF2E0F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>04A1CFE7-08CB-4D14-B92B-32A6200AD886</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -254,6 +279,26 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(targetPath)
+  tell application "Visual Studio Code"
+    activate
+    open POSIX file targetPath
+  end tell
+end alfred_script</string>
+				<key>cachescript</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>E0EF8553-6680-4CF3-B33D-BFADD575D2EC</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -261,7 +306,7 @@
 				<key>fixedorder</key>
 				<false/>
 				<key>items</key>
-				<string>[{"imagefile":"69f92ffbb6107fda13475c1e8318673088bbeafd.png","title":"git {var:directory_name} cursor","subtitle":"Open Cursor"},{"imagefile":"a50b67aadf42151203160bf645c559cc3a30e4d8.png","title":"git {var:directory_name} code","arg":"code","subtitle":"Open VS Code"},{"imagefile":"60fde7ceda90073d7944e3ab1cfa9864da683af6.png","title":"git {var:directory_name} iterm","arg":"iterm","subtitle":"Open in iTerm"},{"imagefile":"c1f688f0845e81473e8951fad2c73e2747bf09a7.png","title":"git {var:directory_name} github","arg":"github open","subtitle":"Open Github"},{"imagefile":"a939f40e35cc59c607f6efc73f10617745b40c6d.png","title":"git {var:directory_name} open","arg":"open","subtitle":"Open in Finder"}]</string>
+				<string>[{"imagefile":"69f92ffbb6107fda13475c1e8318673088bbeafd.png","title":"git {var:directory_name} cursor","arg":"cursor","subtitle":"Open Cursor"},{"imagefile":"a50b67aadf42151203160bf645c559cc3a30e4d8.png","title":"git {var:directory_name} code","arg":"code","subtitle":"Open VS Code"},{"imagefile":"60fde7ceda90073d7944e3ab1cfa9864da683af6.png","title":"git {var:directory_name} iterm","arg":"iterm","subtitle":"Open in iTerm"},{"imagefile":"c1f688f0845e81473e8951fad2c73e2747bf09a7.png","title":"git {var:directory_name} github","arg":"github open","subtitle":"Open Github"},{"imagefile":"a939f40e35cc59c607f6efc73f10617745b40c6d.png","title":"git {var:directory_name} open","arg":"open","subtitle":"Open in Finder"}]</string>
 				<key>matchmode</key>
 				<integer>0</integer>
 				<key>runningsubtext</key>
@@ -430,6 +475,23 @@ echo "${JSON}"
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argument</key>
+				<string>{var:repo_path}</string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>F95BFB12-CCAE-40DF-946A-C5765BC70022</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>conditions</key>
 				<array>
 					<dict>
@@ -460,6 +522,20 @@ echo "${JSON}"
 						<key>uid</key>
 						<string>105A9434-559C-4502-BCA2-966DEFE43123</string>
 					</dict>
+					<dict>
+						<key>inputstring</key>
+						<string>{var:app_name}</string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>cursor</string>
+						<key>outputlabel</key>
+						<string>cursor</string>
+						<key>uid</key>
+						<string>04A1CFE7-08CB-4D14-B92B-32A6200AD886</string>
+					</dict>
 				</array>
 				<key>elselabel</key>
 				<string>else</string>
@@ -470,26 +546,6 @@ echo "${JSON}"
 			<string>alfred.workflow.utility.conditional</string>
 			<key>uid</key>
 			<string>6FDF3F88-5885-4572-88D6-4B1604C1C244</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>applescript</key>
-				<string>on alfred_script(targetPath)
-  tell application "Visual Studio Code"
-    activate
-    open POSIX file targetPath
-  end tell
-end alfred_script</string>
-				<key>cachescript</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.applescript</string>
-			<key>uid</key>
-			<string>E0EF8553-6680-4CF3-B33D-BFADD575D2EC</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -526,7 +582,27 @@ end alfred_script</string>
 			<key>type</key>
 			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
-			<string>F95BFB12-CCAE-40DF-946A-C5765BC70022</string>
+			<string>2BE9A445-168C-4AA1-B1F7-864A73EF2E0F</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(targetPath)
+  tell application "Cursor"
+    activate
+    open POSIX file targetPath
+  end tell
+end alfred_script</string>
+				<key>cachescript</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>BF074567-0912-4C9B-AAFA-B597A03715A4</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -737,6 +813,15 @@ A tool to help switch and open up VSCode quickly without using finder or termina
 			<key>ypos</key>
 			<real>280</real>
 		</dict>
+		<key>2BE9A445-168C-4AA1-B1F7-864A73EF2E0F</key>
+		<dict>
+			<key>note</key>
+			<string>create command as query</string>
+			<key>xpos</key>
+			<real>760</real>
+			<key>ypos</key>
+			<real>350</real>
+		</dict>
 		<key>4C6C7ADA-73E4-40F4-910C-0AE70FB16E26</key>
 		<dict>
 			<key>xpos</key>
@@ -747,9 +832,9 @@ A tool to help switch and open up VSCode quickly without using finder or termina
 		<key>5B0B5FE4-5D25-4FD7-80F7-4761334EB72B</key>
 		<dict>
 			<key>xpos</key>
-			<real>715</real>
+			<real>720</real>
 			<key>ypos</key>
-			<real>520</real>
+			<real>540</real>
 		</dict>
 		<key>6FDF3F88-5885-4572-88D6-4B1604C1C244</key>
 		<dict>
@@ -777,7 +862,7 @@ A tool to help switch and open up VSCode quickly without using finder or termina
 			<key>xpos</key>
 			<real>505</real>
 			<key>ypos</key>
-			<real>520</real>
+			<real>540</real>
 		</dict>
 		<key>8EDF4FD8-A14E-4C53-827F-9F348E65D2CC</key>
 		<dict>
@@ -798,14 +883,23 @@ A tool to help switch and open up VSCode quickly without using finder or termina
 			<key>xpos</key>
 			<real>320</real>
 			<key>ypos</key>
-			<real>520</real>
+			<real>540</real>
+		</dict>
+		<key>BF074567-0912-4C9B-AAFA-B597A03715A4</key>
+		<dict>
+			<key>note</key>
+			<string>open cursor</string>
+			<key>xpos</key>
+			<real>925</real>
+			<key>ypos</key>
+			<real>360</real>
 		</dict>
 		<key>C445B3A9-6FC5-4E9E-A269-216CD376A564</key>
 		<dict>
 			<key>xpos</key>
-			<real>685</real>
+			<real>720</real>
 			<key>ypos</key>
-			<real>395</real>
+			<real>430</real>
 		</dict>
 		<key>C941D053-A400-4700-B70D-044802A382D1</key>
 		<dict>
@@ -819,18 +913,18 @@ A tool to help switch and open up VSCode quickly without using finder or termina
 			<key>note</key>
 			<string>open vscode</string>
 			<key>xpos</key>
-			<real>850</real>
+			<real>925</real>
 			<key>ypos</key>
-			<real>270</real>
+			<real>175</real>
 		</dict>
 		<key>F95BFB12-CCAE-40DF-946A-C5765BC70022</key>
 		<dict>
 			<key>note</key>
 			<string>create command as query</string>
 			<key>xpos</key>
-			<real>725</real>
+			<real>760</real>
 			<key>ypos</key>
-			<real>290</real>
+			<real>265</real>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
@@ -864,7 +958,7 @@ A tool to help switch and open up VSCode quickly without using finder or termina
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2.4.0</string>
+	<string>2.5.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/brand-it/git-alfred-workflow</string>
 </dict>
