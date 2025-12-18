@@ -1,6 +1,6 @@
 # Download
 
-[Download V2.5.0](https://github.com/brand-it/git-alfred-workflow/releases/download/v2.5.0/git.alfredworkflow)
+[Download V2.6.0](https://github.com/brand-it/git-alfred-workflow/releases/download/v2.6.0/git.alfredworkflow)
 
 A tool to help switch and open up VSCode quickly without using finder or terminal. It can help save you a lot of time when switching between projects.
 
