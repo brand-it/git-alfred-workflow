@@ -313,7 +313,7 @@
 DIRECTORY=$HOME
 STARTS_WITH=$1
 LOCKFILE="${TMPDIR}cached_repos.lock"
-SHALLOW_MAX_DEPTH=3
+SHALLOW_MAX_DEPTH=${scan_depth:-3}
 
 # Define the temporary file path using macOS's built-in temp file path and a fixed name
 CACHED_REPOS="${TMPDIR}cached_repos"
@@ -834,9 +834,37 @@ A tool to help switch and open up VSCode quickly without using finder or termina
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>defaultvalue</key>
+				<integer>3</integer>
+				<key>markercount</key>
+				<integer>2</integer>
+				<key>maxvalue</key>
+				<integer>20</integer>
+				<key>minvalue</key>
+				<integer>0</integer>
+				<key>onlystoponmarkers</key>
+				<false/>
+				<key>showmarkers</key>
+				<false/>
+			</dict>
+			<key>description</key>
+			<string>How deep into the tree should we scan for files with .git repos defined.</string>
+			<key>label</key>
+			<string>Scan Depth</string>
+			<key>type</key>
+			<string>slider</string>
+			<key>variable</key>
+			<string>scan_depth</string>
+		</dict>
+	</array>
+	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2.2.0</string>
+	<string>2.3.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/brand-it/git-alfred-workflow</string>
 </dict>
