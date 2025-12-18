@@ -57,23 +57,24 @@
 				<false/>
 			</dict>
 		</array>
-		<key>6FDF3F88-5885-4572-88D6-4B1604C1C244</key>
+		<key>659BB4E1-A05B-418F-861D-C20BFA38596D</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>15AB19C0-941B-40E8-8FAE-5CC084E99854</string>
+				<string>0880E7B3-B9E6-488A-BFB2-864F744D69FC</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
-				<key>sourceoutputuid</key>
-				<string>40599530-CD23-4F3A-920A-6EF2BED4D028</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+		</array>
+		<key>6FDF3F88-5885-4572-88D6-4B1604C1C244</key>
+		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>A68CE09D-41BE-457F-BDAB-0F0767AC9D0D</string>
+				<string>659BB4E1-A05B-418F-861D-C20BFA38596D</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -230,17 +231,35 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>paths</key>
-				<array>
-					<string>/Applications/iTerm.app</string>
-				</array>
-				<key>toggle</key>
-				<false/>
+				<key>applescript</key>
+				<string>on alfred_script(targetPath)
+  tell application "iTerm"
+    activate
+    
+    -- Try to use existing window, or create new one
+    try
+      tell current window
+        create tab with default profile
+        tell current session
+          write text "cd " &amp; quoted form of targetPath
+        end tell
+      end tell
+    on error
+      -- If no window exists, create one
+      create window with default profile
+      tell current session of current window
+        write text "cd " &amp; quoted form of targetPath
+      end tell
+    end try
+  end tell
+end alfred_script</string>
+				<key>cachescript</key>
+				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.launchfiles</string>
+			<string>alfred.workflow.action.applescript</string>
 			<key>uid</key>
-			<string>15AB19C0-941B-40E8-8FAE-5CC084E99854</string>
+			<string>0880E7B3-B9E6-488A-BFB2-864F744D69FC</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -264,15 +283,17 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>cd '{var:repo_path}'</string>
+				<key>argument</key>
+				<string>{var:repo_path}</string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.terminalcommand</string>
+			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
-			<string>A68CE09D-41BE-457F-BDAB-0F0767AC9D0D</string>
+			<string>659BB4E1-A05B-418F-861D-C20BFA38596D</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -632,6 +653,25 @@ end alfred_script</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{var:cache_dir}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>8AFADD51-BC09-4FB4-8CBA-D5DF6C156AF5</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
@@ -653,25 +693,6 @@ end alfred_script</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>autopaste</key>
-				<false/>
-				<key>clipboardtext</key>
-				<string>{var:cache_dir}</string>
-				<key>ignoredynamicplaceholders</key>
-				<false/>
-				<key>transient</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
-			<key>uid</key>
-			<string>8AFADD51-BC09-4FB4-8CBA-D5DF6C156AF5</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>path</key>
 				<string>{var:cache_dir}</string>
 			</dict>
@@ -679,6 +700,21 @@ end alfred_script</string>
 			<string>alfred.workflow.action.revealfile</string>
 			<key>uid</key>
 			<string>BA2201D6-49E8-488C-BE25-A8BBD4D98DA4</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>paths</key>
+				<array/>
+				<key>toggle</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.launchfiles</string>
+			<key>uid</key>
+			<string>75FF65E0-A92E-4EEE-8907-9302D1EAB879</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -700,42 +736,6 @@ end alfred_script</string>
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>27E0E514-7799-43FF-ADE7-9F7E69C32700</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>git clear</string>
-				<key>subtext</key>
-				<string>Reset the git cache to grab new git repos</string>
-				<key>text</key>
-				<string>git clear</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>072F6006-1635-46BD-807F-346056295DAE</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>paths</key>
-				<array/>
-				<key>toggle</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.launchfiles</string>
-			<key>uid</key>
-			<string>75FF65E0-A92E-4EEE-8907-9302D1EAB879</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -772,6 +772,27 @@ echo "{ \"items\": [ { \"title\": \"Cleared cache...\", \"subtitle\": \"Cleared 
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>git clear</string>
+				<key>subtext</key>
+				<string>Reset the git cache to grab new git repos</string>
+				<key>text</key>
+				<string>git clear</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>072F6006-1635-46BD-807F-346056295DAE</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string># Download
@@ -790,12 +811,12 @@ A tool to help switch and open up VSCode quickly without using finder or termina
 			<key>ypos</key>
 			<real>670</real>
 		</dict>
-		<key>15AB19C0-941B-40E8-8FAE-5CC084E99854</key>
+		<key>0880E7B3-B9E6-488A-BFB2-864F744D69FC</key>
 		<dict>
 			<key>xpos</key>
-			<real>720</real>
+			<real>925</real>
 			<key>ypos</key>
-			<real>40</real>
+			<real>105</real>
 		</dict>
 		<key>27E0E514-7799-43FF-ADE7-9F7E69C32700</key>
 		<dict>
@@ -836,6 +857,15 @@ A tool to help switch and open up VSCode quickly without using finder or termina
 			<key>ypos</key>
 			<real>540</real>
 		</dict>
+		<key>659BB4E1-A05B-418F-861D-C20BFA38596D</key>
+		<dict>
+			<key>note</key>
+			<string>create command as query</string>
+			<key>xpos</key>
+			<real>760</real>
+			<key>ypos</key>
+			<real>180</real>
+		</dict>
 		<key>6FDF3F88-5885-4572-88D6-4B1604C1C244</key>
 		<dict>
 			<key>xpos</key>
@@ -871,13 +901,6 @@ A tool to help switch and open up VSCode quickly without using finder or termina
 			<key>ypos</key>
 			<real>670</real>
 		</dict>
-		<key>A68CE09D-41BE-457F-BDAB-0F0767AC9D0D</key>
-		<dict>
-			<key>xpos</key>
-			<real>720</real>
-			<key>ypos</key>
-			<real>150</real>
-		</dict>
 		<key>BA2201D6-49E8-488C-BE25-A8BBD4D98DA4</key>
 		<dict>
 			<key>xpos</key>
@@ -892,7 +915,7 @@ A tool to help switch and open up VSCode quickly without using finder or termina
 			<key>xpos</key>
 			<real>925</real>
 			<key>ypos</key>
-			<real>360</real>
+			<real>355</real>
 		</dict>
 		<key>C445B3A9-6FC5-4E9E-A269-216CD376A564</key>
 		<dict>
@@ -915,7 +938,7 @@ A tool to help switch and open up VSCode quickly without using finder or termina
 			<key>xpos</key>
 			<real>925</real>
 			<key>ypos</key>
-			<real>175</real>
+			<real>225</real>
 		</dict>
 		<key>F95BFB12-CCAE-40DF-946A-C5765BC70022</key>
 		<dict>
@@ -958,7 +981,7 @@ A tool to help switch and open up VSCode quickly without using finder or termina
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2.5.0</string>
+	<string>2.6.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/brand-it/git-alfred-workflow</string>
 </dict>
