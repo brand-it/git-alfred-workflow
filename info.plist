@@ -261,7 +261,7 @@
 				<key>fixedorder</key>
 				<false/>
 				<key>items</key>
-				<string>[{"imagefile":"a50b67aadf42151203160bf645c559cc3a30e4d8.png","title":"git {var:directory_name} code","arg":"code","subtitle":"Open VS Code"},{"imagefile":"60fde7ceda90073d7944e3ab1cfa9864da683af6.png","title":"git {var:directory_name} iterm","arg":"iterm","subtitle":"Open in iTerm"},{"imagefile":"c1f688f0845e81473e8951fad2c73e2747bf09a7.png","title":"git {var:directory_name} github","arg":"github open","subtitle":"Open Github"},{"imagefile":"a939f40e35cc59c607f6efc73f10617745b40c6d.png","title":"git {var:directory_name} open","arg":"open","subtitle":"Open in Finder"}]</string>
+				<string>[{"imagefile":"69f92ffbb6107fda13475c1e8318673088bbeafd.png","title":"git {var:directory_name} cursor","subtitle":"Open Cursor"},{"imagefile":"a50b67aadf42151203160bf645c559cc3a30e4d8.png","title":"git {var:directory_name} code","arg":"code","subtitle":"Open VS Code"},{"imagefile":"60fde7ceda90073d7944e3ab1cfa9864da683af6.png","title":"git {var:directory_name} iterm","arg":"iterm","subtitle":"Open in iTerm"},{"imagefile":"c1f688f0845e81473e8951fad2c73e2747bf09a7.png","title":"git {var:directory_name} github","arg":"github open","subtitle":"Open Github"},{"imagefile":"a939f40e35cc59c607f6efc73f10617745b40c6d.png","title":"git {var:directory_name} open","arg":"open","subtitle":"Open in Finder"}]</string>
 				<key>matchmode</key>
 				<integer>0</integer>
 				<key>runningsubtext</key>
@@ -864,7 +864,7 @@ A tool to help switch and open up VSCode quickly without using finder or termina
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2.3.0</string>
+	<string>2.4.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/brand-it/git-alfred-workflow</string>
 </dict>
